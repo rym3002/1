@@ -1,4 +1,4 @@
-name: Sync lazy to scf(同步文件)
+name: Sync lazy and fix(同步并修正)
 on:
   workflow_dispatch:
 jobs:
@@ -12,11 +12,13 @@ jobs:
         with:
           source_repo: "https://${{ secrets.PAT2 }}@github.com/jinboyigu/lazy_script.git"
           source_branch: "master"
-          destination_repo: "https://${{ secrets.PAT2 }}@github.com/wheatwee/scf.git"
+          destination_repo: "https://${{ secrets.PAT2 }}@github.com/rym3002/rym.git"
           destination_branch: "main"
-      
+
+      - name: Checkout Repository
+        uses: actions/checkout@master    
       - name: Run GitHub File Sync
         uses: BetaHuhn/repo-file-sync-action@v1
         with:
           GH_PAT: ${{ secrets.PAT }}
-          SKIP_PR: true  
+          SKIP_PR: true 
